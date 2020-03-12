@@ -3,11 +3,6 @@ import re
 import os
 import utils
 
-# Set path to cwd; make in/ and out/ dir
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-if not os.path.exists('in'): os.mkdir('in')
-if not os.path.exists('out'): os.mkdir('out')
-
 def read_input_file(path):
     """
     Parses an input file
