@@ -1,11 +1,24 @@
-import networkx as nx
 import re
 import os
+
+import networkx as nx
+
 import utils
 
-def read_input_file(path):
+def validate_file(path):
+    """File must not exceed 100KB and must contain only numbers and spaces"""
+    if os.path.getsize(path) > 100000:
+        print(f'{path} exceeds 100KB, make sure you\'re not repeating edges!')
+        return False
+    with open(path, 'r') as f:
+        if not re.match(r'^[\d\.\s]+$', f.read()):
+            print(f'{path} contains characters that are not numbers and spaces')
+            return False
+    return True
+
+def read_input_file(path, max_size):
     """
-    Parses an input file
+    Parses and validates an input file
 
     :param path: str, a path
     :return: networkx Graph is the input is well formed, AssertionError thrown otherwise
@@ -26,11 +39,13 @@ def read_input_file(path):
             assert tokens[0].isdigit() and int(tokens[0]) < n
             assert tokens[1].isdigit() and int(tokens[1]) < n
             assert bool(re.match(r'(^\d+\.\d{1,3}$|^\d+$)', tokens[2]))
+            assert 0 < float(tokens[2]) < 100
 
         G = nx.parse_edgelist(lines, nodetype=int, data=(('weight', float),))
         G.add_nodes_from(range(n))
 
         assert nx.is_connected(G)
+        assert len(G) <= max_size
 
         return G
 
@@ -42,9 +57,9 @@ def write_input_file(G, path):
         fo.writelines('\n'.join(lines))
         fo.close()
 
-def read_output_file(G, path):
+def read_output_file(path, G):
     """
-    Parses an input file
+    Parses and validates an input file
 
     :param path: str, a path
     :param G: the input graph corresponding to this output
@@ -56,14 +71,14 @@ def read_output_file(G, path):
         for token in tokens.split():
             assert token.isdigit()
             node = int(token)
-            assert node < len(G)
+            assert 0 <= node < len(G)
             nodes.add(node)
         lines = fo.read().splitlines()
         fo.close()
 
         # validate edges
         for line in lines:
-            tokens = line.split(' ')
+            tokens = line.split()
 
             assert len(tokens) == 2
             assert tokens[0].isdigit() and int(tokens[0]) in nodes
