@@ -1,6 +1,7 @@
 import networkx as nx
 from collections import defaultdict
 
+
 def is_valid_network(G, T):
     """
     Checks whether T is a valid network of G.
@@ -14,13 +15,14 @@ def is_valid_network(G, T):
 
     return nx.is_tree(T) and nx.is_dominating_set(G, T.nodes)
 
+
 def average_pairwise_distance(T):
     """
     Computes the average pairwise distance between vertices in T.
     This is what we want to minimize!
 
     Note that this function is a little naive, i.e. there are much
-    faster ways to compute the average pairwise distance in a tree. 
+    faster ways to compute the average pairwise distance in a tree.
     Feel free to write your own!
 
     Args:
@@ -32,6 +34,7 @@ def average_pairwise_distance(T):
     path_lengths = nx.all_pairs_dijkstra_path_length(T)
     total_pairwise_distance = sum([sum(length[1].values()) for length in path_lengths])
     return total_pairwise_distance / (len(T) * (len(T) - 1))
+
 
 def average_pairwise_distance_fast(T):
     """Calculates the average pairwise distance for a tree in linear time.
@@ -55,35 +58,37 @@ def average_pairwise_distance_fast(T):
     h/t to Noah Kingdon for the algorithm.
     """
     if not nx.is_connected(T):
-      raise ValueError('Tree must be connected')
+        raise ValueError("Tree must be connected")
 
     subtree_sizes = {}
     marked = defaultdict(bool)
     # store child parent relationships for each edge, because the components
     # created when removing an edge are the child subtree and the rest of the vertices
     child_parent_pairs = [(0, 0)]
+
     def calculate_subtree_sizes(u):
         """Iterates through the tree to compute all subtree sizes in linear time
-        
+
         Args:
             u: the root of the subtree to start the DFS
-        
+
         """
         unmarked_neighbors = filter(lambda v: not marked[v], T.neighbors(u))
         marked[u] = True
         size = 0
         for v in unmarked_neighbors:
-          child_parent_pairs.append((v, u))
-          calculate_subtree_sizes(v)
-          size += subtree_sizes[v]
+            child_parent_pairs.append((v, u))
+            calculate_subtree_sizes(v)
+            size += subtree_sizes[v]
         subtree_sizes[u] = size + 1
         return subtree_sizes[u]
-    calculate_subtree_sizes(0) # any vertex can be the root of a tree
-    
+
+    calculate_subtree_sizes(0)  # any vertex can be the root of a tree
+
     cost = 0
     for c, p in child_parent_pairs:
-      if c != p:
-        a, b = subtree_sizes[c], len(T.nodes) - subtree_sizes[c]
-        w = T[c][p]['weight']
-        cost += (2 * a * b * w)
+        if c != p:
+            a, b = subtree_sizes[c], len(T.nodes) - subtree_sizes[c]
+            w = T[c][p]["weight"]
+            cost += 2 * a * b * w
     return cost / (len(T) * (len(T) - 1))
