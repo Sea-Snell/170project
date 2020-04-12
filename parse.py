@@ -18,7 +18,7 @@ def validate_file(path):
     return True
 
 
-def read_input_file(path, max_size):
+def read_input_file(path, max_size=None):
     """
     Parses and validates an input file
 
@@ -47,7 +47,9 @@ def read_input_file(path, max_size):
         G.add_nodes_from(range(n))
 
         assert nx.is_connected(G)
-        assert len(G) <= max_size
+
+        if max_size is not None:
+            assert len(G) <= max_size
 
         return G
 
