@@ -3,6 +3,7 @@
 Take a look at the project spec before you get started!
 
 Requirements:
+
 You'll only need to install networkx to work with the starter code. For installation instructions, follow: https://networkx.github.io/documentation/stable/install.html
 
 Files:
