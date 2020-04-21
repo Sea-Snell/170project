@@ -2,6 +2,10 @@
 
 Take a look at the project spec before you get started!
 
+Requirements:
+
+You'll only need to install networkx to work with the starter code. For installation instructions, follow: https://networkx.github.io/documentation/stable/install.html
+
 Files:
 - `parse.py`: functions to read/write inputs and outputs
 - `solver.py`: where you should be writing your code to solve inputs
