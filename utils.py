@@ -31,6 +31,11 @@ def average_pairwise_distance(T):
     Returns:
         double: the average pairwise distance
     """
+    if not nx.is_connected(T):
+        raise ValueError("Tree must be connected")
+
+    if len(T) == 1: return 0
+    
     path_lengths = nx.all_pairs_dijkstra_path_length(T)
     total_pairwise_distance = sum([sum(length[1].values()) for length in path_lengths])
     return total_pairwise_distance / (len(T) * (len(T) - 1))
