@@ -3,9 +3,11 @@ ALL_My_HOMIES_HATE_DINO_NUGGETS algorithm
 
 
 Ok so to run this just do:
+
 python solver.py path-to-inputs path-to-outputs temperary-team-name
 
-For example you could run
+For example you could run:
+
 python solver.py inputs/ master_outputs4/ all_my_homies_hate_dino_nuggets_2.0
 
 
