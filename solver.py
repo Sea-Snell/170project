@@ -927,7 +927,7 @@ def is_top_score(score, top_score):
 
 # 		print('input %s: current score = %s' % (input_name, str(starting_score)))
 
-# 		T = solve(G, in_file, leaderboard_top_score)
+# 		T = solve(G, in_file, 0.0)
 # 		print('done %s' % (input_name))
 # 		assert is_valid_network(G, T)
 # 		new_score = average_pairwise_distance_fast(T)
