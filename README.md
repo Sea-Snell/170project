@@ -1,8 +1,6 @@
 # CS 170 Project Spring 2020
 ALL_My_HOMIES_HATE_DINO_NUGGETS algorithm
 
-our team logo:
-![alt text](logo.jpg =250x250)
 
 Ok so to run this just do:
 
