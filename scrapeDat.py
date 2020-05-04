@@ -8,7 +8,7 @@ class Entry:
 	def __init__(self, team_name, input_name, score, rank=None):
 		self.team_name = team_name
 		self.input_name = input_name
-		self.score = score
+		self.score = round(score, 8)
 		self.rank = rank
 
 	def __str__(self):
@@ -67,7 +67,7 @@ class Leaderboard:
 	def custom_entry(self, team_name, input_name, score, update_leaderboard=True):
 		assert input_name in self.input_set and team_name in self.team_set and team_name in self.custom_teams
 		if (team_name, input_name) in self.all_items:
-			self.all_items[(team_name, input_name)].score = score
+			self.all_items[(team_name, input_name)].score = round(score, 8)
 		else:
 			new_entry = Entry(team_name, input_name, score)
 			self.custom_entries[(team_name, input_name)] = new_entry
@@ -110,6 +110,9 @@ class Leaderboard:
 
 	def get_entry(self, team_name, input_name):
 		return self.all_items[(team_name, input_name)]
+
+	def get_top_score(self, input_name):
+		return min(self.input_map[input_name]).score
 
 # test = Leaderboard()
 # print(test.leaderboard)

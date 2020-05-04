@@ -4,11 +4,11 @@ import os
 from utils import is_valid_network, average_pairwise_distance, average_pairwise_distance_fast
 
 input_folder = './inputs/'
-folders = ['./outputs_v1/', './outputs_v2/']
-merge_folder = './master_outputs/'
+folders = ['./master_outputs/', './master_outputs_brute/']
+merge_folder = './master_outputs2/'
 leaderboard = Leaderboard()
 
-new_team = 'all_my_homies_hate_dino_nuggets'
+new_team = 'all_my_homies_hate_dino_nuggets2'
 leaderboard.create_custom_team(new_team)
 
 for item in leaderboard.input_set:
