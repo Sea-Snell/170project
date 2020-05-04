@@ -24,7 +24,7 @@ In this github we've attached our the current outputs folder "master_outputs4", 
 Almost all the code is in solve.py, there are a couple other important files ScrapeDat.py, for scraping the leaderboard, and cluster.py, taken from this github https://github.com/53RT/Highly-Connected-Subgraphs-Clustering-HCS for clustering graphs by highly connected components.
 
 
-When you run this you may want to try different random seeds, around line 950 in solve.py is where the seed is set, if you want to try to reproduce our results you would want to run seeds (10, 20, 21, 42, 69, 420, and 42069). Although this may not perfectly reproduce, since seeds 10, 20, and 21 were ran on earlier versions of the code, in which case you could go back 1 commit in the github to obtain an earlier version of the algorithm.
+When you run this you may want to try different random seeds, around line 950 in solve.py is where the seed is set, if you want to try to reproduce our results you would want to run seeds (10, 20, 21, 42, 69, 420, 42069, and 42070). Although this may not perfectly reproduce, since seeds 10, 20, and 21 were ran on earlier versions of the code, in which case you could go back 1 commit in the github to obtain an earlier version of the algorithm.
 
 
 And lastly, in the case where the leaderboard database is down but you still want to run it. I wrote another loop that is commited out, look for the commited out if __name__ == '__main__': around line 890 in solve.py and commit out everything below the other if __name__ == '__main__':

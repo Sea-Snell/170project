@@ -953,7 +953,7 @@ if __name__ == '__main__':
 	out_path = sys.argv[2]
 	team_name = sys.argv[3]
 
-	seed = 42069
+	seed = 42070
 	random.seed(seed)
 	np.random.seed(seed)
 
